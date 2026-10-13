@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deylan Cedeño — Desarrollador</title>
+  <meta name="description" content="Deylan Cedeño — desarrollo de páginas web y sistemas a la medida para negocios. Siquirres, Costa Rica. Trabajo remoto.">
+  <meta property="og:title" content="Deylan Cedeño — Desarrollador">
+  <meta property="og:description" content="Páginas web y sistemas de inventario y ventas para negocios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #000000;
+      --hairline: #292d30;
+      --white: #ffffff;
+      --bone: #f0f0f0;
+      --ash: #a1a4a5;
+      --iron: #6e727a;
+      --violet: #9281f7;
+      --violet-glow: #baa7ff;
+      --blue: #70b8ff;
+      --green: #3ad389;
+      --amber: #ffca16;
+      --gradient-violet: linear-gradient(135deg, rgb(146,129,247) 0%, rgb(154,84,220) 100%);
+
+      --serif: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --r-sm: 6px;
+      --r-lg: 16px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--void);
+      color: var(--bone);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--violet); color: var(--void); }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-weight: 600; color: var(--white); letter-spacing: -0.01em; }
+    .brand span { font-family: var(--mono); font-weight: 400; color: var(--violet); }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; }
+    .nav-links a:not(.btn) { color: var(--bone); transition: color .15s ease-out; }
+    .nav-links a:not(.btn):hover { color: var(--white); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--hairline); border-radius: var(--r-sm);
+      padding: 10px 16px; font-size: 14px; color: var(--white);
+      background: transparent; transition: border-color .15s ease-out;
+    }
+    .btn:hover { border-color: var(--white); }
+
+    .hero { padding: 120px 0 104px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--hairline); border-radius: 9999px;
+      padding: 6px 12px; font-size: 14px; color: var(--bone); margin-bottom: 32px;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
+    h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(48px, 8vw, 96px); line-height: 1; letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .hero p.lead { margin-top: 28px; font-size: 18px; color: var(--ash); max-width: 520px; }
+    .hero-actions { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .link-chev { color: var(--bone); font-size: 16px; transition: color .15s ease-out; }
+    .link-chev:hover { color: var(--white); }
+
+    .cube-stage { display: flex; justify-content: center; perspective: 900px; height: 320px; align-items: center; }
+    .cube {
+      width: 180px; height: 180px; position: relative; transform-style: preserve-3d;
+      animation: spin 24s linear infinite;
+    }
+    .face {
+      position: absolute; inset: 0;
+      background: linear-gradient(rgb(20,20,20), rgb(3,3,3));
+      border: 1px solid var(--hairline);
+    }
+    .face.f1 { transform: translateZ(90px); }
+    .face.f2 { transform: rotateY(180deg) translateZ(90px); }
+    .face.f3 { transform: rotateY(90deg) translateZ(90px); }
+    .face.f4 { transform: rotateY(-90deg) translateZ(90px); }
+    .face.f5 { transform: rotateX(90deg) translateZ(90px); }
+    .face.f6 { transform: rotateX(-90deg) translateZ(90px); }
+    @keyframes spin {
+      from { transform: rotateX(-24deg) rotateY(0deg); }
+      to   { transform: rotateX(-24deg) rotateY(360deg); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(12px); animation: rise .7s ease-out forwards; }
+    .reveal.d2 { animation-delay: .1s; } .reveal.d3 { animation-delay: .2s; } .reveal.d4 { animation-delay: .3s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .cube, .reveal { animation: none; opacity: 1; transform: rotateX(-24deg) rotateY(35deg); }
+      .reveal { transform: none; }
+    }
+
+    section { padding: 96px 0; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--ash); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 16px; }
+    h2 {
+      font-family: var(--sans); font-weight: 500;
+      font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.05em;
+      color: var(--white);
+    }
+    .section-lead { margin-top: 16px; color: var(--ash); font-size: 18px; max-width: 620px; }
+    .grid { display: grid; gap: 16px; margin-top: 48px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      border: 1px solid var(--hairline); border-radius: var(--r-lg);
+      padding: 32px; background: var(--void);
+      transition: border-color .15s ease-out;
+    }
+    .card:hover { border-color: #3a3f43; }
+    .card h3 { font-size: 20px; font-weight: 500; color: var(--white); letter-spacing: -0.01em; }
+    .card p { margin-top: 10px; color: var(--ash); font-size: 15px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 12px; color: var(--ash);
+      border: 1px solid var(--hairline); border-radius: var(--r-sm); padding: 4px 8px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+    .icon-box {
+      width: 40px; height: 40px; border-radius: 12px; background: var(--gradient-violet);
+      display: grid; place-items: center; margin-bottom: 24px;
+      box-shadow: rgba(176,199,217,.145) 0 0 0 1px;
+    }
+    .icon-box svg { width: 20px; height: 20px; stroke: var(--white); fill: none; stroke-width: 1.5; }
+
+    .featured { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--ash); margin-bottom: 16px; }
+    .status .dot { background: var(--amber); }
+
+    .terminal {
+      border: 1px solid var(--hairline); border-radius: var(--r-lg);
+      font-family: var(--mono); font-size: 13px; line-height: 1.7; overflow: hidden;
+    }
+    .term-bar { display: flex; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--hairline); align-items: center; }
+    .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #2a2a2a; display: inline-block; }
+    .term-bar span { margin-left: 10px; color: var(--blue); font-size: 12px; }
+    .term-body { padding: 20px 24px; color: var(--bone); overflow-x: auto; }
+    .term-body .c { color: var(--iron); }
+    .term-body .s { color: var(--violet); }
+    .term-body .ok { color: var(--green); }
+    .term-body .wip { color: var(--amber); }
+    .term-body .row { display: flex; gap: 12px; white-space: nowrap; }
+
+    .stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+    .stack .badge { font-size: 14px; padding: 8px 14px; color: var(--bone); }
+
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .about p { color: var(--ash); font-size: 17px; }
+    .about p + p { margin-top: 16px; }
+    .facts { border: 1px solid var(--hairline); border-radius: var(--r-lg); }
+    .fact { display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; font-size: 15px; }
+    .fact + .fact { border-top: 1px solid var(--hairline); }
+    .fact span:first-child { color: var(--ash); }
+    .fact span:last-child { color: var(--bone); text-align: right; }
+
+    .contact { text-align: center; }
+    .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 77px); letter-spacing: -0.01em; line-height: 1; }
+    .mail {
+      display: inline-block; margin-top: 32px; font-family: var(--mono);
+      font-size: clamp(14px, 2.4vw, 18px); color: var(--violet); word-break: break-all;
+      transition: color .15s ease-out;
+    }
+    .mail:hover { color: var(--violet-glow); }
+    .socials { margin-top: 32px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    footer { border-top: 1px solid var(--hairline); padding: 32px 0; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--ash); flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .hero .wrap, .featured, .about { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .cube-stage { height: 240px; }
+      .cube { width: 130px; height: 130px; }
+      .face.f1 { transform: translateZ(65px); } .face.f2 { transform: rotateY(180deg) translateZ(65px); }
+      .face.f3 { transform: rotateY(90deg) translateZ(65px); } .face.f4 { transform: rotateY(-90deg) translateZ(65px); }
+      .face.f5 { transform: rotateX(90deg) translateZ(65px); } .face.f6 { transform: rotateX(-90deg) translateZ(65px); }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      .nav-links a:not(.btn) { display: none; }
+      .hero { padding: 72px 0 64px; }
+      section { padding: 72px 0; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="#" class="brand">Deylan Cedeño<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto" class="btn">Contactar</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <div class="pill reveal"><span class="dot"></span> Disponible para proyectos freelance</div>
+        <h1 class="reveal d2">Software a la medida para negocios que quieren crecer.</h1>
+        <p class="lead reveal d3">Soy desarrollador y estudiante de Ingeniería en Informática. Construyo páginas web y sistemas de inventario y ventas para que los negocios dejen el cuaderno y el Excel atrás.</p>
+        <div class="hero-actions reveal d4">
+          <a href="#contacto" class="btn">Hablemos de tu proyecto</a>
+          <a href="#proyectos" class="link-chev">Ver proyectos &rsaquo;</a>
+        </div>
+      </div>
+      <div class="cube-stage" aria-hidden="true">
+        <div class="cube">
+          <div class="face f1"></div><div class="face f2"></div><div class="face f3"></div>
+          <div class="face f4"></div><div class="face f5"></div><div class="face f6"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="proyectos">
+    <div class="wrap">
+      <p class="eyebrow">Proyectos</p>
+      <h2>Lo que estoy construyendo</h2>
+
+      <div class="featured" style="margin-top:48px">
+        <div class="card">
+          <div class="status"><span class="dot"></span> En desarrollo</div>
+          <h3>Sistema de gestión para tienda de tecnología</h3>
+          <p>Aplicación web para una tienda de accesorios y reparación de celulares y portátiles en Siquirres. Reemplaza el control en Excel por un sistema que funciona tanto en la computadora de la tienda como en el celular.</p>
+          <p>Incluye inventario por categorías, registro de ventas, reportes de ganancia con IVA y, en una segunda fase, control de reparaciones y cuentas por cobrar.</p>
+          <div class="tags">
+            <span class="badge">Aplicación web</span>
+            <span class="badge">PostgreSQL</span>
+            <span class="badge">Supabase</span>
+            <span class="badge">Responsive</span>
+          </div>
+        </div>
+
+        <div class="terminal" aria-label="Avance del proyecto">
+          <div class="term-bar"><i></i><i></i><i></i><span>roadmap.md</span></div>
+          <div class="term-body">
+            <div class="c"># Avance del proyecto</div>
+            <br>
+            <div class="row"><span class="s">fase_1</span><span>inventario</span><span class="wip">● en progreso</span></div>
+            <div class="row"><span class="s">fase_1</span><span>ventas</span><span class="wip">● en progreso</span></div>
+            <div class="row"><span class="s">fase_1</span><span>reportes</span><span class="wip">● en progreso</span></div>
+            <div class="row"><span class="s">fase_2</span><span>reparaciones</span><span class="c">○ pendiente</span></div>
+            <div class="row"><span class="s">fase_2</span><span>cuentas_por_cobrar</span><span class="c">○ pendiente</span></div>
+            <br>
+            <div class="c"># Objetivo</div>
+            <div>uso diario desde <span class="s">"pc"</span> y <span class="s">"celular"</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="status" style="color:var(--ash)"><span class="dot" style="background:var(--green)"></span> Publicado</div>
+          <h3>Este portafolio</h3>
+          <p>Sitio estático con diseño oscuro, adaptable a celular y publicado en GitHub Pages.</p>
+          <div class="tags">
+            <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">GitHub Pages</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <p class="eyebrow">Servicios</p>
+      <h2>Cómo puedo ayudar a tu negocio</h2>
+      <p class="section-lead">Trabajo con precio cerrado por proyecto, para que sepás desde el inicio cuánto vas a invertir.</p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
+          <h3>Páginas web</h3>
+          <p>Una página rápida y profesional para tu negocio, con tus productos o servicios, ubicación y botón directo a WhatsApp.</p>
+        </div>
+        <div class="card">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></div>
+          <h3>Sistemas de inventario y ventas</h3>
+          <p>Controlá tu stock, tus ventas y tus ganancias desde la computadora o el celular, sin depender de hojas sueltas.</p>
+        </div>
+        <div class="card">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></div>
+          <h3>Del Excel a un sistema</h3>
+          <p>Si tu negocio ya funciona con un Excel, lo convierto en una aplicación ordenada, con reportes automáticos y menos errores.</p>
+        </div>
+      </div>
+
+      <div class="stack" aria-label="Tecnologías">
+        <span class="badge">C#</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Oracle</span>
+        <span class="badge">PostgreSQL</span>
+        <span class="badge">Supabase</span>
+        <span class="badge">HTML</span>
+        <span class="badge">CSS</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">Python</span>
+        <span class="badge">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Hola, soy Deylan.</h2>
+      </div>
+      <div>
+        <p>Estudio Ingeniería en Informática en la Universidad Hispanoamericana y vivo en Siquirres, Limón. Además de programar, tengo experiencia en atención al cliente y soporte técnico de celulares y portátiles, así que entiendo cómo funciona un negocio por dentro.</p>
+        <p>Me gusta construir herramientas que la gente realmente usa todos los días. Trabajo de forma remota con clientes en Costa Rica y el extranjero, en español o inglés.</p>
+        <div class="facts" style="margin-top:32px">
+          <div class="fact"><span>Ubicación</span><span>Siquirres, Costa Rica</span></div>
+          <div class="fact"><span>Modalidad</span><span>Remoto</span></div>
+          <div class="fact"><span>Idiomas</span><span>Español nativo · Inglés avanzado</span></div>
+          <div class="fact"><span>Estudios</span><span>Ing. en Informática, UH</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contacto</p>
+      <h2>¿Tenés un proyecto en mente?</h2>
+      <a class="mail" href="mailto:drkdeylanced@gmail.com">drkdeylanced@gmail.com</a>
+      <div class="socials">
+        <a class="btn" href="https://www.linkedin.com/in/deylancedeno" target="_blank" rel="noopener">LinkedIn &rsaquo;</a>
+        <a class="btn" href="https://www.instagram.com/deylan_joestar/" target="_blank" rel="noopener">Instagram &rsaquo;</a>
+        <a class="btn" href="mailto:drkdeylanced@gmail.com">Escribirme &rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="y">2026</span> Deylan Cedeño</span>
+      <span>Siquirres, Costa Rica</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
